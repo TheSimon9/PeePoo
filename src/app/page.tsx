@@ -3,6 +3,7 @@
 import Toggle from "@/components/Toggle";
 import {useEffect, useState} from "react";
 import Diapers, {Diaper} from "@/components/Diapers";
+import Breastfeed from "@/components/Breastfeed";
 
 function fetchDiapers(setDiapers: (prev:Diaper[]) => void){
   fetch('/api/get', {
@@ -48,11 +49,10 @@ export default function Home() {
     })
   }
 
-
-  return <main className="flex min-h-screen flex-col items-center justify-evenly p-8">
+  return <main className="flex min-h-screen flex-col items-center p-8">
     <div className="mx-auto grid max-w-12xl grid-cols-1 gap-x-8 gap-y-16">
       <div className="max-w-xl">
-        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">PeePoo</h2>
+        <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">PeePoo</h1>
         <p className="mt-4 text-lg leading-8 text-gray-300">{"Track what there's in Thomas's diaper"}</p>
         <div className={"my-4"}>
           <Toggle type={"💩"} name={"poo"} setValue={setPoo} value={poo}/>
@@ -64,8 +64,9 @@ export default function Home() {
         </button>
       </div>
     </div>
+    <Breastfeed />
     <div className="w-full">
-      <h1 className="text-3xl py-4 font-bold tracking-tight text-white sm:text-4xl">Diapers in {`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</h1>
+      <h1 className="text-lg py-4 font-bold tracking-tight text-white">Diapers in {`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</h1>
       <Diapers diapers={diapers ?? []}/>
     </div>
   </main>

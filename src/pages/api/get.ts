@@ -15,6 +15,7 @@ export default async function handler(
         .select()
         .gte("created_at", new Date(today.getFullYear(), today.getMonth(), today.getDate()).toUTCString())
         .lte("created_at", tomorrow.toUTCString())
+        .order("created_at", { ascending: false })
 
     if(error)
         console.error("Something wrong append during get:",error)
