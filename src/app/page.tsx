@@ -12,7 +12,7 @@ function fetchDiapers(setDiapers: (prev:Diaper[]) => void){
     }
   }).then((res) => res.json())
     .then((diapers) => {
-    setDiapers(diapers.map((d)=>({
+    setDiapers(diapers.map((d: Diaper)=>({
       poo: d.poo,
       pee: d.pee,
       created_at: new Date(d.created_at)

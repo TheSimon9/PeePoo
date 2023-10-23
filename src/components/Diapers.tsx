@@ -22,7 +22,7 @@ export default function Diapers({diapers}:DiapersProps){
                 </tr>
             </thead>
             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
-                {diapers.map(d => (<DiaperRow key={d.created_at} pee={d.pee} poo={d.poo} date={d.created_at}/>))}
+                {diapers.map(d => (<DiaperRow key={d.created_at.toUTCString()} pee={d.pee} poo={d.poo} date={d.created_at}/>))}
             </tbody>
         </table>
 }
