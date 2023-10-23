@@ -4,7 +4,7 @@ import Toggle from "@/components/Toggle";
 import {useEffect, useState} from "react";
 import Diapers, {Diaper} from "@/components/Diapers";
 
-function fetchDiapers(setDiapers){
+function fetchDiapers(setDiapers: (prev:Diaper[]) => void){
   fetch('/api/get', {
     method: 'POST',
     headers: {
