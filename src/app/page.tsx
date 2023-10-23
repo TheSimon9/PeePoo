@@ -1,11 +1,35 @@
 'use client';
 
 import Toggle from "@/components/Toggle";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import Diapers, {Diaper} from "@/components/Diapers";
+
+function fetchDiapers(setDiapers){
+  fetch('/api/get', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  }).then((res) => res.json())
+    .then((diapers) => {
+    setDiapers(diapers.map((d)=>({
+      poo: d.poo,
+      pee: d.pee,
+      created_at: new Date(d.created_at)
+    })));
+  })
+}
 
 export default function Home() {
   const [pee, setPee] = useState(false)
   const [poo, setPoo] = useState(false)
+  const [diapers, setDiapers] = useState<Diaper[]>([])
+
+  useEffect(() => {
+    fetchDiapers(setDiapers)
+  },[])
+
+  const date = new Date()
 
   async function onSubmit() {
     await fetch('/api/submit', {
@@ -17,11 +41,15 @@ export default function Home() {
         pee: pee,
         poo: poo
       }),
+    }).then(() => {
+      fetchDiapers(setDiapers)
+      setPoo(false)
+      setPee(false)
     })
   }
 
 
-  return <main className="flex min-h-screen flex-col items-center justify-between p-24">
+  return <main className="flex min-h-screen flex-col items-center justify-evenly p-8">
     <div className="mx-auto grid max-w-12xl grid-cols-1 gap-x-8 gap-y-16">
       <div className="max-w-xl">
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">PeePoo</h2>
@@ -35,6 +63,10 @@ export default function Home() {
           Track new diaper
         </button>
       </div>
+    </div>
+    <div className="w-full">
+      <h1 className="text-3xl py-4 font-bold tracking-tight text-white sm:text-4xl">Diapers in {`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</h1>
+      <Diapers diapers={diapers ?? []}/>
     </div>
   </main>
 }
