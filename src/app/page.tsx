@@ -2,7 +2,6 @@
 
 import Toggle from "@/components/Toggle";
 import {useState} from "react";
-import {saveDiaper} from "@/domain/Diaper";
 
 export default function Home() {
   const [pee, setPee] = useState(false)
@@ -18,8 +17,7 @@ export default function Home() {
         pee: pee,
         poop: poop
       }),
-    }).then(data => data.json())
-      .then((diaper) => saveDiaper(diaper, new Date()))
+    })
   }
 
 
