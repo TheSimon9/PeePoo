@@ -15,9 +15,14 @@ In order to start dev env:
 
 Easy Peesy 💦
 
+
 ## Tools
-This project is build with:
-1. Next.js
-2. Tailwindcss
-3. Sailboat UI (https://sailboatui.com)
-4. 💩
+
+- Frontend:
+    - [Next.js](https://github.com/vercel/next.js) - a React framework for production.
+    - [Tailwind](https://tailwindcss.com/) for styling and layout.
+    - [Supabase.js](https://supabase.com/docs/library/getting-started) for realtime data syncing. 
+    - [Sailboat UI](https://sailboatui.com)
+    - 💩
+- Backend:
+    - [supabase.com/dashboard](https://supabase.com/dashboard/): hosted Postgres database with restful API for usage with Supabase.js.
