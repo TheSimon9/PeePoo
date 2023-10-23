@@ -9,7 +9,7 @@ export default async function handler(
 ) {
     const { data, error } = await supabase
         .from('diapers')
-        .insert({ pee: req.body.pee, poo: req.body.poop })
+        .insert({ pee: req.body.pee, poo: req.body.poo })
         .select()
 
     if(error)

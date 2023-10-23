@@ -5,7 +5,7 @@ import {useState} from "react";
 
 export default function Home() {
   const [pee, setPee] = useState(false)
-  const [poop, setPoop] = useState(false)
+  const [poo, setPoo] = useState(false)
 
   async function onSubmit() {
     await fetch('/api/submit', {
@@ -15,7 +15,7 @@ export default function Home() {
       },
       body: JSON.stringify({
         pee: pee,
-        poop: poop
+        poo: poo
       }),
     })
   }
@@ -27,7 +27,7 @@ export default function Home() {
         <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">PeePoo</h2>
         <p className="mt-4 text-lg leading-8 text-gray-300">{"Track what there's in Thomas's diaper"}</p>
         <div className={"my-4"}>
-          <Toggle type={"💩"} name={"poop"} setValue={setPoop} value={poop}/>
+          <Toggle type={"💩"} name={"poo"} setValue={setPoo} value={poo}/>
           <Toggle type={"💦"} name={"pee"} setValue={setPee} value={pee}/>
         </div>
         <button type="submit" onClick={onSubmit}
