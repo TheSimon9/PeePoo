@@ -1,6 +1,5 @@
 import {useEffect, useState} from "react";
 import Weights, {WeightRow} from "@/components/Weights";
-import {Diaper} from "@/components/Diapers";
 
 async function onTrackWeight(weight: number, date: Date) {
     await fetch('/api/weight', {
@@ -16,24 +15,28 @@ async function onTrackWeight(weight: number, date: Date) {
         .then(a => console.log(a))
 }
 
+function fetchWeights(setWeights: (prev: WeightRow[]) => void) {
+    fetch('/api/weight', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }).then((res) => res.json())
+        .then((weights) => {
+            setWeights(weights.map((d: WeightRow) => ({
+                weight: d.weight,
+                datetime: new Date(d.datetime)
+            })));
+        })
+}
+
 export default function Weight(){
     const [weightDate, setWeightDate] = useState<Date>(new Date())
     const [weight, setWeight] = useState<number>(0)
     const [weights, setWeights] = useState<WeightRow[]>([])
 
     useEffect(() => {
-        fetch('/api/weight', {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        }).then((res) => res.json())
-            .then((weights) => {
-                setWeights(weights.map((d: WeightRow)=>({
-                    weight: d.weight,
-                    datetime: new Date(d.datetime)
-                })));
-            })
+        fetchWeights(setWeights);
     }, []);
 
     return <div className="w-full max-w-xl">
@@ -48,6 +51,7 @@ export default function Weight(){
                     <button type="submit" onClick={() => onTrackWeight(weight, weightDate).then(() => {
                         setWeight(0);
                         setWeightDate(new Date());
+                        fetchWeights(setWeights);
                     })}
                             className="flex-none rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
                         Track
