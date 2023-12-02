@@ -68,7 +68,7 @@ export default function Home() {
     <Breastfeed />
     <Weight />
     <div className="w-full max-w-xl">
-      <h1 className="text-lg py-4 font-bold tracking-tight text-white">Diapers in {`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</h1>
+      <h1 className="text-lg py-4 font-bold tracking-tight text-white">Diapers in {`${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`}</h1>
       <Diapers diapers={diapers ?? []}/>
     </div>
   </main>
