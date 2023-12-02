@@ -4,6 +4,7 @@ import Toggle from "@/components/Toggle";
 import {useEffect, useState} from "react";
 import Diapers, {Diaper} from "@/components/Diapers";
 import Breastfeed from "@/components/Breastfeed";
+import Weight from "@/components/Weight";
 
 function fetchDiapers(setDiapers: (prev:Diaper[]) => void){
   fetch('/api/get', {
@@ -65,6 +66,7 @@ export default function Home() {
       </div>
     </div>
     <Breastfeed />
+    <Weight />
     <div className="w-full max-w-xl">
       <h1 className="text-lg py-4 font-bold tracking-tight text-white">Diapers in {`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</h1>
       <Diapers diapers={diapers ?? []}/>
