@@ -6,7 +6,7 @@ type DiaperProp = {
 
 export default function DiaperRow({pee, poo, date}:DiaperProp){
     return <tr>
-            <td className="px-6 py-4">{`${date?.getHours() ?? 0}:${date?.getMinutes() ?? 0}`}</td>
+            <td className="px-6 py-4">{`${date?.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}`}</td>
             <td className="px-6 py-4">{poo ? "Yup" : "Nope"}</td>
             <td className="px-6 py-4">{pee ? "Yup" : "Nope"}</td>
         </tr>
