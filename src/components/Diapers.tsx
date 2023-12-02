@@ -13,7 +13,7 @@ export type Diaper = {
 
 export default function Diapers({diapers}:DiapersProps){
 
-    return <table className="w-full border-collapse bg-white text-left text-sm text-gray-500">
+    return <table className="w-full max-w-xl border-collapse bg-white text-left text-sm text-gray-500">
             <thead className="bg-gray-50">
                 <tr>
                     <th scope="col" className="px-6 py-4 font-medium text-gray-900">Date</th>

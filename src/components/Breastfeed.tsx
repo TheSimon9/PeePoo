@@ -23,7 +23,7 @@ export default function Breastfeed(){
         .then(j => setLastBreastfed(new Date(j[0].last_breastfed)))
     }, [])
 
-    return <div className="w-full py-8">
+    return <div className="w-full max-w-xl py-8">
         <div className="max-w-xl">
             <h2 className="text-lg font-bold tracking-tight text-white">Breastfeed</h2>
             <p className="mt-4 pb-4 text-lg leading-8 text-gray-300">{"Track last breastfed, in order to understand when next"}</p>

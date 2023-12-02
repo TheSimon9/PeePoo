@@ -50,7 +50,7 @@ export default function Home() {
   }
 
   return <main className="flex min-h-screen flex-col items-center p-8">
-    <div className="mx-auto grid max-w-12xl grid-cols-1 gap-x-8 gap-y-16">
+    <div className="w-full max-w-xl grid max-w-12xl grid-cols-1 gap-x-8 gap-y-16">
       <div className="max-w-xl">
         <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">PeePoo</h1>
         <p className="mt-4 text-lg leading-8 text-gray-300">{"Track what there's in Thomas's diaper"}</p>
@@ -65,7 +65,7 @@ export default function Home() {
       </div>
     </div>
     <Breastfeed />
-    <div className="w-full">
+    <div className="w-full max-w-xl">
       <h1 className="text-lg py-4 font-bold tracking-tight text-white">Diapers in {`${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`}</h1>
       <Diapers diapers={diapers ?? []}/>
     </div>
